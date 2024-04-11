@@ -1,0 +1,22 @@
+# On-chain contract
+
+The Bounty on-chain contract is implemented using
+[Marlowe](https://marlowe.iohk.io/), in which a party (the Maintainer) can make
+a payment to another party (the Contributor) by locking funds in the contract
+and delegating the responsibility of unlocking the funds to a 3rd party (the
+Bot).
+
+Each bounty is it's own independent contract, usually refered to as peer-to-peer
+contracts. Marlowe contracts provide several guarantees as part of the language
+design, but having one contract per bounty limits the blast radious of any
+security issues, which is a very good quality to have.
+
+The bot is reponsible for submitting the contract on-chain and will initially
+hold the role tokens for each of the other parites.
+
+The Maintainer will first make a deposit into his account. After some external
+criterion is met, the Admin can unlock the payment, moving the tokens from the
+Maintainer’s account to the Developer’s account, and closing the contract. After
+this, the Developer can withdraw their payment.
+
+![alt_text](../img/contract.png "image_tooltip")

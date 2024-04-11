@@ -1,0 +1,16 @@
+# Trust Assumptions
+
+One of the main advantages of using on-chain contract is providing strong enough
+guarantees for all parties involved that the conditions of the bounty will be
+fulfilled.
+
+## Escrow
+
+The bounty contract requires the maintainer to lock (deposit) the corresponding
+reward amount in the on-chain contract serving as an escrow mechanism. If the
+final PR is completed, reviewed and merged, the bot will get notified and call
+the on-chain contract to release reward without any actions required from the
+maintainer side.
+
+If the task is not fulfilled within the deadline or if the contributor cancels
+the the bounty, the maintainer will be able to recover the reward amount.

@@ -1,0 +1,41 @@
+import { Callout } from "nextra/components";
+
+# Claim the reward
+
+This guide will explain how contributors can claim their reward once the PR that
+fulfills the tasks has been approved and merged by the maintainer.
+
+## Do the work
+
+Goes without saying, the first step to claiming a bounty reward it have
+submitted the work that fulfills the tasks requested by the original issue.
+
+As with any open-source contribution, the maintainers will be the ones reviewing
+the PR. Make sure that everything described in the bounty issue has been covered
+as part of the PR (eg: scope, acceptance criteria, docs, tests, etc).
+
+## Flag pull-request as ready
+
+The process continues by notifying the maintainer that your code is ready for
+review and merge. If you're PR is in draft mode, the usual procedure is to
+change it to "ready for review". If you know who is responsible for the review
+process, you can make it explicit by requesting a review from the PR settings.
+
+Regardless of the method you use, you should understand that this is part of the
+normal Github PR workflow and not a process managed by the GitHoney bot.
+
+## Wait for the merge
+
+Once your PR has been reviewed and merged, the bot will get notified and will
+automatically submit a on-chain transaction to change the state of the bounty
+contract.
+
+You will see a new comment from the bot explaining that the bounty has been
+fulfilled and that the reward can be claimed. This comment will also provide a
+link that will take you to a simple web page that allows you to sign and submit
+the withdrawal transaction.
+
+Make sure to sign it using the Cardano wallet that holds the "contributor" role
+token that was sent during the process of accepting the bounty. The on-chain
+contract makes sure that only the holder of this token is allowed to withdraw
+the reward.

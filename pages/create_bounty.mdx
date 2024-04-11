@@ -1,0 +1,76 @@
+import { Callout } from "nextra/components";
+
+# Create a new bounty
+
+This guide will explain how maintainers can create a new bounty by attaching it
+to a Github issue.
+
+## Create an issue
+
+The process starts by creating a normal Github issue. There's no requirement or
+constraing for the issue, it can follow whatever conventions or good practices
+you have defined for your organization / repository.
+
+Even if not strictly required, it's important for the maintainer to provide a
+well-defined scope of what the task tries to acomplish. If it's a bug fix,
+provide ways to reproduce it and acceptance criteria. If it's a new feature,
+describe all requirements and a definition of "done".
+
+## Attach a bounty
+
+Once you have created the issue that represent the task to acomplish by a
+contributor, the next step is to attach a bounty to it. You can do that by
+adding a comment in the issue that starts with `/githoney` and calls
+the `attach-bounty` command.
+
+The `attach-bounty` command requires you to define the following parameters:
+
+- `amount`: the amount in ADA currency that the contributor that fulfills the
+  bounty will get once the tasks has been fulfilled.
+- `deadline`: the time interval starting now that the contributor has available
+  to fulfill the task.
+- `address` the address of the wallet that will be used to deposit the reward in
+  the escrow contract.
+
+Here's the example of the body of a comment that can be used to attach a bounty
+that provides a reward of 500 ADA, that needs to fulfilled within 60 days and
+that will be deposited from the address `addr1xxx`.
+
+```
+/githoney attach-bounty --amount 5000 --address addr_test1vp626xyvsxnue73fkvjh2r3krfsv4xq3n0ma429k9fn5hhgcewutd --deadline 60d
+```
+
+<Callout type="info">
+  For detailed information on available commands please refer to the [Bot
+  commands](./bot_commands) section of the documentation.
+</Callout>
+
+When the bot receives the command it provides acknowledgment by adding a +1
+emoji to your comment.
+
+At this stage is when the bot will create a new custom
+[on-chain contract](./onchain_contract) specific to this issue / bounty. This
+process might take a few minutes. Once finished the bot will reply with a
+comment explaining the result of the operation and providing a link to execute
+the reward deposit transaction.
+
+## Deposit the reward
+
+One of the main advantages of using on-chain contract is providing strong enough
+guarantees for all parties involved that the conditions of the bounty will be
+fulfilled.
+
+The bounty contract requires the maintainer to lock (deposit) the corresponding
+reward amount in the on-chain contract serving as an escrow mechanism. If the
+final PR is completed, reviewed and merged, the bot will get notified and call
+the on-chain contract to release reward without any actions required from the
+maintainer side.
+
+If the task is not fulfilled within the deadline or if the contributor cancels
+the the bounty, the maintainer will be able to recover the reward amount.
+
+To execute the desposit, click the link provided by the bot in response to the
+`attach-bounty` command. This will show a very simple web page that allows that
+holds a reference to the required on-chain transaction for you to sign using a
+browser-enabled Cardano wallet. Make sure to use the wallet that matches the
+address specified in the `attach-bounty` command.

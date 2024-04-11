@@ -1,0 +1,23 @@
+{
+  "index": "Introduction",
+  "-- For Maintainers --": {
+    "type": "separator",
+    "title": "For Maintainers"
+  },
+  "github_setup": "Github setup",
+  "create_bounty": "Create bounty",
+  "review_merge": "Review & merge",
+  "-- For Contributors --": {
+    "type": "separator",
+    "title": "For Contributors"
+  },
+  "accept_bounty": "Accept bounty",
+  "claim_reward": "Claim reward",
+  "-- How it Works --": {
+    "type": "separator",
+    "title": "How it Works"
+  },
+  "bounty_lifecycle": "Bounty lifecycle",
+  "onchain_contract": "On-chain contract",
+  "bot_commands": "Bot commands"
+}

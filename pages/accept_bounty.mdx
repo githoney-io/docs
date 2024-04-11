@@ -1,0 +1,54 @@
+import { Callout } from "nextra/components";
+
+# Accept a bounty
+
+This guide will explain how contributors can accept an existing bounty by
+creating a Github PR that references it.
+
+## Start a pull-request
+
+The process starts by creating a new PR. This PR can be from a branch in the
+original repository or from a fork.
+
+It's recommended to start as a draft PR to make it explicit that the task hasn't
+been finished. It doesn't have to contain any code at this point, it can be just
+an empty branch.
+
+## Accept the bounty
+
+Once you have created a PR, the next step is to link it to the existing bounty.
+You can do this by adding a comment in the PR that starts with
+`/githoney` and calls the `accept-bounty` command.
+
+Since only one contributor can be linked to a bounty, it's recommended to do
+this as early as possible in the process to avoid working on a task only to find
+that that other contributor accepted the same bounty already.
+
+The `accept-bounty` command has the following parameters:
+
+- `contract`: the id of the contract of the bounty, which can be found as a
+  comment in by the bot in the issue that describes the task.
+- `address`: the Cardano wallet address that will be used to claim the reward if
+  / when the PR get approved and merged.
+
+Here's the example of the body of a comment that can be used to attach a bounty
+that provides a reward of 500 ADA, that needs to fulfilled within 60 days and
+that will be deposited from the address `addr1xxx`.
+
+```
+/githoney accept-bounty --contract abc111 --address addr1xxx
+```
+
+<Callout type="info">
+  For detailed information on available commands please refer to the [Bot
+  commands](./bot_commands) section of the documentation.
+</Callout>
+
+When the bot receives the command it provides acknowledgment by adding a +1
+emoji to your comment.
+
+At this stage is when the bot will send to you Cardano address a token that
+represents the contributor role. The [on-chain contract](./onchain_contract)
+will ensure that only the holder of this token is allowed to withdraw the
+rewards for this bounty once the PR has been merged. You can check your wallet
+after a few minutes to confirm the reception.
