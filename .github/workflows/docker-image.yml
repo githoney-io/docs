@@ -17,7 +17,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ github.token }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -26,6 +26,7 @@ jobs:
           images: ghcr.io/githoney-io/docs
           tags: |
             type=sha
+
       - name: setup docker
         uses: docker/setup-buildx-action@v1
 
