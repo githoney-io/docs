@@ -1,3 +1,5 @@
+import { Callout } from "nextra/components";
+
 # Bot Command reference
 
 The GitHoney bot interactions can be thought as analogous to interacting
@@ -11,28 +13,44 @@ that describe the task to be accomplished.
 
 ### Args
 
-- `reward`: the amount in ADA currency that the contributor that fulfills the
-  bounty will get once the tasks has been fulfilled.
-- `deadline`: the time interval starting now that the contributor has available
-  to fulfill the task.
-- `payer` the address of the wallet that will be used to deposit the reward in
+- `amount`: the amount in ADA currency that the contributor that fulfills the
+  bounty will get once the tasks has been fulfilled. The minimum value is 10 ADA.
+- `deadline`: the time interval in days starting now that the contributor has available
+  to fulfill the task. The minimum value is 6 days.
+- `address` the address of the wallet that will be used to deposit the reward in
   the escrow contract.
+- `network` the network on which the contract will be created. It only accepts
+  two values `preprod` and `mainnet`. If this parameter is ignored, it will be
+  set to "preprod" by default.
+
+<Callout type="warning">
+  If the address format does not match with the network, the contract creation
+  will fail.
+</Callout>
 
 Here's the example of the body of a comment that can be used to attach a bounty
-that provides a reward of 500 ADA, that needs to fulfilled within 60 days and
-that will be deposited from the address `addr1xxx`.
+in mainnet that provides a reward of 5000 ADA, that needs to fulfilled within 60
+days and that will be deposited from the address `addr1xxx`.
 
 ```
-/githoney attach-bounty --amount 5000 --address addr_test1vp626xyvsxnue73fkvjh2r3krfsv4xq3n0ma429k9fn5hhgcewutd --deadline 60d
+/githoney attach-bounty --amount 5000 --address addr1q9dmgalc57pqpehn3pmgexawztyrw2tckwhavpexpp35tsey05ppwrzmf2kmjwjecj30xtgfezzghtzmqkttyfu3ragqrlsz3d --deadline 60 --network mainnet
 ```
 
 ## `accept-bounty` command
 
 This command allows contributors to accept a bounty and link a PR to it.
 
-## Args
+### Args
 
 - `contract`: the id of the contract of the bounty, which can be found as a
   comment in by the bot in the issue that describes the task.
 - `address`: the Cardano wallet address that will be used to claim the reward if
   / when the PR get approved and merged.
+
+Here's the example of the body of a comment that can be used to attach a bounty
+that provides a reward of 500 ADA, that needs to fulfilled within 60 days and
+that will be deposited from the address `addr1xxx`.
+
+```
+/githoney accept-bounty --contract abc111 --address addr1xxx
+```
