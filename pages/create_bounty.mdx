@@ -26,18 +26,26 @@ the `attach-bounty` command.
 The `attach-bounty` command requires you to define the following parameters:
 
 - `amount`: the amount in ADA currency that the contributor that fulfills the
-  bounty will get once the tasks has been fulfilled.
-- `deadline`: the time interval starting now that the contributor has available
-  to fulfill the task.
+  bounty will get once the tasks has been fulfilled. The minimum value is 10 ADA.
+- `deadline`: the time interval in days starting now that the contributor has available
+  to fulfill the task. The minimum value is 6 days.
 - `address` the address of the wallet that will be used to deposit the reward in
   the escrow contract.
+- `network` the network on which the contract will be created. It only accepts
+  two values `preprod` and `mainnet`. If this parameter is ignored, it will be
+  set to "preprod" by default.
+
+<Callout type="warning">
+  If the address format does not match with the network, the contract creation
+  will fail.
+</Callout>
 
 Here's the example of the body of a comment that can be used to attach a bounty
-that provides a reward of 500 ADA, that needs to fulfilled within 60 days and
-that will be deposited from the address `addr1xxx`.
+in mainnet that provides a reward of 500 ADA, that needs to fulfilled within 60
+days and that will be deposited from the address `addr1xxx`.
 
 ```
-/githoney attach-bounty --amount 5000 --address addr_test1vp626xyvsxnue73fkvjh2r3krfsv4xq3n0ma429k9fn5hhgcewutd --deadline 60d
+/githoney attach-bounty --amount 5000 --address addr1q9dmgalc57pqpehn3pmgexawztyrw2tckwhavpexpp35tsey05ppwrzmf2kmjwjecj30xtgfezzghtzmqkttyfu3ragqrlsz3d --deadline 60 --network mainnet
 ```
 
 <Callout type="info">
