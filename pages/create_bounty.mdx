@@ -11,22 +11,21 @@ The process starts by creating a normal Github issue. There's no requirement or
 constraing for the issue, it can follow whatever conventions or good practices
 you have defined for your organization / repository.
 
-Even if not strictly required, it's important for the maintainer to provide a
-well-defined scope of what the task tries to acomplish. If it's a bug fix,
-provide ways to reproduce it and acceptance criteria. If it's a new feature,
-describe all requirements and a definition of "done".
+However, providing a well-defined scope is crucial. For bug fixes, include
+reproduction steps and acceptance criteria. For new features, describe all
+requirements and what constitutes a "completed" task. This helps contributors
+and ensures a smooth process!
 
 ## Attach a bounty
 
-Once you have created the issue that represent the task to acomplish by a
-contributor, the next step is to attach a bounty to it. You can do that by
-adding a comment in the issue that starts with `/githoney` and calls
-the `attach-bounty` command.
+Once you have created the issue that represents the work, the next step is
+to attach a bounty. You can do that by adding a comment in the issue that
+starts with `/githoney` and calls the `attach-bounty` command.
 
 The `attach-bounty` command requires you to define the following parameters:
 
-- `amount`: the amount in ADA currency that the contributor that fulfills the
-  bounty will get once the tasks has been fulfilled. The minimum value is 10 ADA.
+- `amount`: The size of the bounty in ADA currency. The developer who fulfills
+ the bounty will receive 95% of this amount.
 - `deadline`: the time interval in days starting now that the contributor has available
   to fulfill the task. The minimum value is 6 days.
 - `address` the address of the wallet that will be used to deposit the reward in
@@ -45,7 +44,7 @@ in mainnet that provides a reward of 500 ADA, that needs to fulfilled within 60
 days and that will be deposited from the address `addr1xxx`.
 
 ```
-/githoney attach-bounty --amount 5000 --address addr1q9dmgalc57pqpehn3pmgexawztyrw2tckwhavpexpp35tsey05ppwrzmf2kmjwjecj30xtgfezzghtzmqkttyfu3ragqrlsz3d --deadline 60 --network mainnet
+/githoney attach-bounty --amount 500 --address addr1q9dmgalc57pqpehn3pmgexawztyrw2tckwhavpexpp35tsey05ppwrzmf2kmjwjecj30xtgfezzghtzmqkttyfu3ragqrlsz3d --deadline 60 --network mainnet
 ```
 
 <Callout type="info">
@@ -73,6 +72,10 @@ reward amount in the on-chain contract serving as an escrow mechanism. If the
 final PR is completed, reviewed and merged, the bot will get notified and call
 the on-chain contract to release reward without any actions required from the
 maintainer side.
+
+<Callout type="info" emoji="🍯">
+  **Project Sustainability:** A small fee - 5% of the bounty amount upon completion plus a fixed 2 ADA initiation fee, supports the Githoney platform, ensuring its continued operation and improvements.
+</Callout>
 
 If the task is not fulfilled within the deadline or if the contributor cancels
 the the bounty, the maintainer will be able to recover the reward amount.
